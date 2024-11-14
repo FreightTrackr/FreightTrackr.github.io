@@ -1,0 +1,233 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000000;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.side {
+    width: 20%;
+    border-right: 2px solid #e1e4e8;
+    background-color: #ffffff;
+    overflow-y: auto;
+    transition: width 0.3s;
+}
+
+.side-header{
+    height: 3.75rem;
+    border-bottom: 2px solid #e1e4e8;
+    background-color: #f8f9fa;
+}
+
+.side-header .svg-icon {
+    height: 2.5rem;          /* Example height */
+    width: 2.5rem;            /* Maintain aspect ratio */
+    border-radius: 50%;     /* Make it round */
+    object-fit: cover;      /* Ensure it covers the area */
+    margin-right: 0.5rem;
+}
+
+.side-menu {
+    height: 2.75rem;
+    border-bottom: 2px solid #e1e4e8;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.side-menu-link {
+    display: block;
+    text-decoration: none;
+}
+
+.side-menu-icon-container {
+    width: 3.75rem;
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side.collapsed {
+    width: 3.75rem;
+}
+
+.side.collapsed .side-header span {
+    display: none;
+}
+
+.side.collapsed .side-header .svg-icon {
+    margin-right: 0;
+}
+
+.side.collapsed .side-menu span {
+    display: none;;
+}
+
+.main-content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s;
+}
+
+.main-content.expanded {
+    width: calc(100% - 3.75rem);
+}
+
+.header {
+    height: 3.75rem;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e1e4e8;
+}
+
+.side-toggle {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 8px;
+    background-color: #f8b739;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.side-toggle:hover {
+    background-color: #f9cb70;
+}
+
+.side-toggle .svg-menu {
+    height: auto;
+    width: 2rem;
+    object-fit: cover;
+}
+
+.account {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-left: auto; 
+    margin-right: 1.875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #f9f9f9;
+    min-width: 6.25rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 3.75rem;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 75%; /* Tombol mengisi lebar penuh dari dropdown */
+    padding-top: 0.5rem; /* Padding untuk memperbesar tombol */
+    padding-bottom: 0.5rem; /* Padding untuk memperbesar tombol */
+    margin-top: 0.5rem ; /* Menghilangkan margin jika ada */
+    background-color: #f82929; /* Warna latar belakang tombol */
+    color: white; /* Warna teks tombol */
+    border: none; /* Menghapus border default */
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    font-size: 1rem; /* Ukuran font tombol */
+    cursor: pointer; /* Menunjukkan kursor pointer saat hover */
+    border-radius: 8px; /* Sudut tombol melengkung */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efek transisi */
+}
+
+.dropdown-content button:hover {
+    background-color: #c91111; /* Warna latar belakang saat hover */
+    transform: scale(1.05); /* Membesar sedikit saat hover */
+}
+
+.dropdown-content button:active {
+    background-color: #b21111; /* Warna latar belakang saat ditekan */
+    transform: scale(0.98); /* Tombol sedikit mengecil saat ditekan */
+}
+
+.main {
+    flex: 1;
+    background-color: #ffffff;
+    overflow-y: auto;
+    padding-top: 3rem;
+}
+
+.footer {
+    height: 3.75rem;
+    width: 100%;
+    border-top: 2px solid #e1e4e8;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright {
+    margin-left: 1.875rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.sosmed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    margin-right: 1.875rem;
+}
+
+.sosmed .svg-sosmed {
+    width: 2rem;
+    height: 2rem;
+}
+
+
+.center-text {
+    text-align: center;
+}
+
+.center-div-horizontally {
+    display: flex;
+    justify-content: center;
+}
+
+.center-div-vertically {
+    display: flex;
+    align-items: center;
+}
+
+.center-div-horizontally-vertically {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
