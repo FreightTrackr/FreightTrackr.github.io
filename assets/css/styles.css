@@ -120,19 +120,40 @@ a {
     object-fit: cover;
 }
 
-.account {
-    height: 2.5rem;
-    width: 2.5rem;
+.header-menu {
+    height: 2.75rem;
+    background-color: inherit;
     margin-left: auto; 
     margin-right: 1.875rem;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.header-menu-link {
+    display: block;
+    text-decoration: none;
+    height: 2.5rem;
+}
+
+.header-menu-icon-container {
+    width: 5.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.header-menu-icon-container .svg-menu {
+    margin-right: 0.25rem;
+}
+
+.account {
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dropdown-content {
