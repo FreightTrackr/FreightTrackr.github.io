@@ -15,9 +15,56 @@ a {
     color: #000000;
 }
 
+.table-container {
+    margin-left: 3rem; /* Memberikan margin di sekeliling kontainer tabel */
+    margin-right: 3rem; /* Memberikan margin di sekeliling kontainer tabel */
+    overflow-x: auto; /* Membuat kontainer bisa di-scroll secara horizontal jika tabel terlalu lebar */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Menghapus jarak antara border sel */
+}
+
+/* Mengatur gaya untuk baris tabel */
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Memberikan latar belakang abu-abu pada baris genap */
+}
+
+/* Mengatur gaya untuk setiap sel tabel */
+table th, table td {
+    padding: 12px 15px; /* Menambah jarak di dalam sel */
+    text-align: left; /* Menyelaraskan teks ke kiri */
+    border-bottom: 1px solid #ddd; /* Menambahkan border bawah pada setiap sel */
+}
+
+/* Menambahkan warna latar belakang pada header */
+table th {
+    background-color: #4CAF50; /* Warna latar belakang header */
+    color: white; /* Warna teks di header */
+    font-size: 16px;
+}
+
+/* Menambahkan efek hover pada baris tabel */
+table tr:hover {
+    background-color: #ddd; /* Mengubah latar belakang saat baris di-hover */
+}
+
+/* Membuat sel header lebih besar */
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 .container {
     display: flex;
     height: 100vh;
+}
+
+.container-auth {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .side {
@@ -95,6 +142,16 @@ a {
     width: 100%;
     background-color: #f8f9fa;
     border-bottom: 2px solid #e1e4e8;
+}
+
+.header-auth {
+    height: 3.75rem;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e1e4e8;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .side-toggle {
@@ -202,7 +259,24 @@ a {
     padding-top: 3rem;
 }
 
+.main-auth {
+    flex: 1;
+    background-color: #ffffff;
+    overflow-y: auto;
+    padding-top: 3rem;
+}
+
 .footer {
+    height: 3.75rem;
+    width: 100%;
+    border-top: 2px solid #e1e4e8;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-auth {
     height: 3.75rem;
     width: 100%;
     border-top: 2px solid #e1e4e8;
@@ -251,4 +325,11 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.absolute-tengah {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
