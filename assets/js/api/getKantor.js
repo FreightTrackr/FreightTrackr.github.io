@@ -2,16 +2,23 @@ import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/cookie.
 import { APIKantor } from "../endpoint.js"
 import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/api.js";
 import { addRowToTable } from "../element.js";
+import { setupPagination } from "../pagination.js"
 
 export default function GetKantor(){
-    const tokenkey = "Authorization"
-    let tokenvalue = getCookie(tokenkey)
-    getJSON(APIKantor,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const tokenkey = "Authorization";
+    let tokenvalue = getCookie(tokenkey);
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page') || 1;
+    const apiUrlWithPage = `${APIKantor}?page=${page}`;
+    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
 function responseFunction(result) {
-    if (result && result.data) {
-        result.data.data.forEach(kantor => {
+    if (result.status == 200) {
+        const kantor = result.data.data;
+        const totalKantor = result.data.data_count.total;
+        
+        kantor.forEach(kantor => {
             const rowData = [
                 kantor.no_pend,
                 kantor.no_pend_kcu,
@@ -25,7 +32,8 @@ function responseFunction(result) {
             ];
             addRowToTable("table-kantor", "tr", "td", rowData);
         });
+        setupPagination("pagination", totalKantor);
     } else {
-        console.log("No transaksi data found.");
+        console.log(result.data.message);
     }
 }

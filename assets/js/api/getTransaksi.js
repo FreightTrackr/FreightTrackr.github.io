@@ -2,16 +2,23 @@ import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/cookie.
 import { APITransaksi } from "../endpoint.js"
 import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/api.js";
 import { addRowToTable } from "../element.js";
+import { setupPagination } from "../pagination.js"
 
 export default function GetTransaksi(){
-    const tokenkey = "Authorization"
-    let tokenvalue = getCookie(tokenkey)
-    getJSON(APITransaksi,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const tokenkey = "Authorization";
+    let tokenvalue = getCookie(tokenkey);
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page') || 1;
+    const apiUrlWithPage = `${APITransaksi}?page=${page}`;
+    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
 function responseFunction(result) {
-    if (result && result.data) {
-        result.data.data.forEach(transaksi => {
+    if (result.status == 200) {
+        const transaksi = result.data.data;
+        const totalTransaksi = result.data.data_count.total;
+        
+        transaksi.forEach(transaksi => {
             const rowData = [
                 transaksi.no_resi,
                 transaksi.layanan,
@@ -48,7 +55,8 @@ function responseFunction(result) {
             ];
             addRowToTable("table-transaksi", "tr", "td", rowData);
         });
+        setupPagination("pagination", totalTransaksi);
     } else {
-        console.log("No transaksi data found.");
+        console.log(result.data.message);
     }
 }

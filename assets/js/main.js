@@ -16,6 +16,9 @@ function EffectButton(){
     const toggleButton = container('toggle-button');
     const accountButton = container('account-button');
     const tableUsers = container('table-users');
+    const tableTransaksi = container('table-transaksi');
+    const tableKantor = container('table-kantor');
+    const tablePelanggan = container('table-pelanggan');
 
     if (loginButton) {
         onClick("login-button", Login)
@@ -41,8 +44,21 @@ function EffectButton(){
         console.log('Element with ID "account-button" not found.');
     }
 
-    GetUsers();
-    GetTransaksi();
-    GetKantor();
-    GetPelanggan();
+    if (accountButton) {
+        accountButton.addEventListener('click', toggleAccount);
+    } else {
+        console.log('Element with ID "account-button" not found.');
+    }
+    if (tableUsers) {
+        GetUsers();
+    }
+    if (tableTransaksi) {
+        GetTransaksi();
+    }
+    if (tableKantor) {
+        GetKantor();
+    }
+    if (tablePelanggan) {
+        GetPelanggan();
+    }
 }
