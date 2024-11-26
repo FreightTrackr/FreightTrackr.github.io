@@ -29,7 +29,44 @@ function responseFunction(result) {
             addRowToTable("table-users", "tr", "td", rowData);
         });
         setupPagination("pagination", totalUsers);
+        generateChart(totalUsers);
     } else {
         console.log(result.data.message);
     }
+}
+
+function generateChart(users) {
+    // Extract data for the chart
+    const roleCounts = {users};
+
+    const labels = Object.keys(roleCounts);
+    const data = Object.values(roleCounts);
+
+    // Create a canvas element for the chart
+    const canvas = document.createElement('canvas');
+    canvas.id = 'usersChart';
+    document.getElementById('chart-container').appendChild(canvas);
+
+    // Generate the chart
+    const ctx = document.getElementById('usersChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar', // You can change this to 'line', 'pie', etc.
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '# of Users by Role',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
