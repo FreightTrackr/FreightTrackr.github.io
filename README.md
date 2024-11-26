@@ -1,3 +1,2 @@
 # FreightTrackr
 frontend
-test
