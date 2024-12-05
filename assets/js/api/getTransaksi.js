@@ -11,7 +11,8 @@ export default function GetTransaksi(){
     const page = urlParams.get('page') || 1;
     const noPend = urlParams.get('no-pend') || "";
     const kodePelanggan = urlParams.get('kode-pelanggan') || "";
-    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
+    const limit = urlParams.get('limit') || 10;
+    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
