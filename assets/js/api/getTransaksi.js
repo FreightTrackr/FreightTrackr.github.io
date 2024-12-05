@@ -10,7 +10,8 @@ export default function GetTransaksi(){
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
     const noPend = urlParams.get('no-pend') || "";
-    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}`;
+    const kodePelanggan = urlParams.get('kode-pelanggan') || "";
+    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
