@@ -15,8 +15,8 @@ function EffectButton(){
     const registerButton = container('register-button');
     const toggleButton = container('toggle-button');
     const accountButton = container('account-button');
-    const cariTransaksiButton = container('cari-transaksi');
     const tableUsers = container('table-users');
+    const tableTransaksi = container('table-transaksi');
     const tableKantor = container('table-kantor');
     const tablePelanggan = container('table-pelanggan');
 
@@ -44,14 +44,17 @@ function EffectButton(){
         console.log('Element with ID "account-button" not found.');
     }
 
-    if (cariTransaksiButton) {
-        cariTransaksiButton.addEventListener('click', GetTransaksi);
+    if (accountButton) {
+        accountButton.addEventListener('click', toggleAccount);
     } else {
-        console.log('Element with ID "cari-transaksi" not found.');
+        console.log('Element with ID "account-button" not found.');
     }
-
+    
     if (tableUsers) {
         GetUsers();
+    }
+    if (tableTransaksi) {
+        GetTransaksi();
     }
     if (tableKantor) {
         GetKantor();
