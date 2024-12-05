@@ -9,7 +9,8 @@ export default function GetTransaksi(){
     let tokenvalue = getCookie(tokenkey);
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
-    const apiUrlWithPage = `${APITransaksi}?page=${page}`;
+    const noPend = urlParams.get('no-pend') || "";
+    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
