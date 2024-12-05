@@ -11,10 +11,12 @@ export default function GetTransaksi(){
     const page = urlParams.get('page') || 1;
     const startDate = urlParams.get('start-date') || "";
     const utcStartDate = new Date(startDate).toISOString();
+    const endDate = urlParams.get('end-date') || "";
+    const utcEndDate = new Date(endDate).toISOString();
     const noPend = urlParams.get('no-pend') || "";
     const kodePelanggan = urlParams.get('kode-pelanggan') || "";
     const limit = urlParams.get('limit') || 10;
-    const apiUrlWithPage = `${APITransaksi}?page=${page}&start_date=${utcStartDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
+    const apiUrlWithPage = `${APITransaksi}?page=${page}&start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
