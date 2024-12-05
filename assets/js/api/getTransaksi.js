@@ -9,10 +9,12 @@ export default function GetTransaksi(){
     let tokenvalue = getCookie(tokenkey);
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
+    const startDate = urlParams.get('start-date') || "";
+    const utcStartDate = new Date(startDate).toISOString();
     const noPend = urlParams.get('no-pend') || "";
     const kodePelanggan = urlParams.get('kode-pelanggan') || "";
     const limit = urlParams.get('limit') || 10;
-    const apiUrlWithPage = `${APITransaksi}?page=${page}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
+    const apiUrlWithPage = `${APITransaksi}?page=${page}&start_date=${utcStartDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
