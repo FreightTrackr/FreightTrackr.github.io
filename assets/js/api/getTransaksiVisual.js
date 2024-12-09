@@ -30,3 +30,11 @@ function constructApiUrl() {
     const utcEndDate = new Date(endDate).toISOString();
     return `${APITransaksiVisual}?start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
 }
+
+function responseFunction(result) {
+    if (result.status == 200) {
+        generateChart(result.data.data);
+    } else {
+        console.log(result.data.message);
+    }
+}
