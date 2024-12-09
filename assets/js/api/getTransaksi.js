@@ -7,24 +7,30 @@ import { setupPagination } from "../pagination.js"
 export default function GetTransaksi(){
     const tokenkey = "Authorization";
     let tokenvalue = getCookie(tokenkey);
+    const apiUrl = constructApiUrl();
+    if (!apiUrl) {
+        console.error("Invalid URL parameters. Please provide start-date and end-date.");
+        return;
+    }
+    getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,responseFunction);
+}
+
+function constructApiUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
+    const limit = urlParams.get('limit') || 10;
     const startDate = urlParams.get('start-date') || "";
-    let utcStartDate
     const endDate = urlParams.get('end-date') || "";
-    let utcEndDate
     const noPend = urlParams.get('no-pend') || "";
     const kodePelanggan = urlParams.get('kode-pelanggan') || "";
-    const limit = urlParams.get('limit') || 10;
-    let apiUrlWithPage;
-    if (startDate == "" || endDate == "") {
-        apiUrlWithPage = `${APITransaksi}?page=${page}&start_date=${startDate}&end_date=${endDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
-    } else {
-        utcStartDate = new Date(startDate).toISOString();
-        utcEndDate = new Date(endDate).toISOString();
-        apiUrlWithPage = `${APITransaksi}?page=${page}&start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}&limit=${limit}`;
+
+    if (!startDate || !endDate) {
+        return `${APITransaksi}?page=${page}&limit=${limit}&start_date=${startDate}&end_date=${endDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
     }
-    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
+
+    const utcStartDate = new Date(startDate).toISOString();
+    const utcEndDate = new Date(endDate).toISOString();
+    return `${APITransaksi}?page=${page}&limit=${limit}&start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
 }
 
 function responseFunction(result) {
