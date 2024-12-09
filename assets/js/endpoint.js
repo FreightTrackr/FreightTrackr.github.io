@@ -4,9 +4,11 @@
 // export let APITransaksi = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/transaksi";
 // export let APIKantor = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/kantor";
 // export let APIPelanggan = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/pelanggan";
+// export let APITransaksiVisual = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/transaksivisual";
 export let APILogin = "http://localhost:3000/login";
 export let APIRegister = "http://localhost:3000/register";
 export let APIUsers = "http://localhost:3000/users";
 export let APITransaksi = "http://localhost:3000/transaksi";
 export let APIKantor = "http://localhost:3000/kantor";
 export let APIPelanggan = "http://localhost:3000/pelanggan";
+export let APITransaksiVisual = "http://localhost:3000/transaksivisual";
