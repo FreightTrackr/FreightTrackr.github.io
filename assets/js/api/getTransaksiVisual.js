@@ -6,12 +6,10 @@ export default function GetTransaksiVisual(){
     const tokenkey = "Authorization";
     let tokenvalue = getCookie(tokenkey);
     const apiUrl = constructApiUrl();
-
     if (!apiUrl) {
         console.error("Invalid URL parameters. Please provide start-date and end-date.");
         return;
     }
-
     getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
