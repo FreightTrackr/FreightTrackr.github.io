@@ -5,6 +5,7 @@
 // export let APIKantor = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/kantor";
 // export let APIPelanggan = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/pelanggan";
 // export let APISemuaTransaksi = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/semuatransaksi";
+// export let APITransaksiDelivered = "https://asia-southeast2-befous.cloudfunctions.net/FreightTrackr/transaksidelivered";
 export let APILogin = "http://localhost:3000/login";
 export let APIRegister = "http://localhost:3000/register";
 export let APIUsers = "http://localhost:3000/users";
@@ -12,3 +13,4 @@ export let APITransaksi = "http://localhost:3000/transaksi";
 export let APIKantor = "http://localhost:3000/kantor";
 export let APIPelanggan = "http://localhost:3000/pelanggan";
 export let APISemuaTransaksi = "http://localhost:3000/semuatransaksi";
+export let APITransaksiDelivered = "http://localhost:3000/transaksidelivered";
