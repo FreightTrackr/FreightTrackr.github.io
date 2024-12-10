@@ -1,5 +1,5 @@
 import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/cookie.js";
-import { APITransaksiVisual } from "../endpoint.js"
+import { APISemuaTransaksi } from "../endpoint.js"
 import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/api.js";
 
 export default function GetTransaksiVisual(){
@@ -21,12 +21,12 @@ function constructApiUrl() {
     const kodePelanggan = urlParams.get('kode-pelanggan') || "";
 
     if (!startDate || !endDate) {
-        return `${APITransaksiVisual}?start_date=${startDate}&end_date=${endDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
+        return `${APISemuaTransaksi}?start_date=${startDate}&end_date=${endDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
     }
 
     const utcStartDate = new Date(startDate).toISOString();
     const utcEndDate = new Date(endDate).toISOString();
-    return `${APITransaksiVisual}?start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
+    return `${APISemuaTransaksi}?start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
 }
 
 function responseFunction(result) {
