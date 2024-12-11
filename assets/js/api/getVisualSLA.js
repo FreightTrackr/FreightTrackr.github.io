@@ -59,15 +59,17 @@ function processData(data) {
     const labels = [];
     const truePercentages = [];
     const falsePercentages = [];
+    const rawData = [];
 
     for (const customer in customerData) {
         const total = customerData[customer].trueCount + customerData[customer].falseCount;
         labels.push(customer);
         truePercentages.push((customerData[customer].trueCount / total) * 100);
         falsePercentages.push((customerData[customer].falseCount / total) * 100);
+        rawData.push(customerData[customer]);
     }
 
-    return { labels, truePercentages, falsePercentages };
+    return { labels, truePercentages, falsePercentages, rawData };
 }
 
 function generateChart(data, startDate, endDate) {
@@ -123,6 +125,16 @@ function generateChart(data, startDate, endDate) {
                 title: {
                     display: true,
                     text: `SLA Status Percentage by Customer Code (${startDate} - ${endDate})`
+                },
+                tooltip: {
+                    callbacks: {
+                        afterBody: function(tooltipItems) {
+                            const index = tooltipItems[0].dataIndex;
+                            const raw = data.rawData[index];
+                            const totalTransactions = raw.trueCount + raw.falseCount;
+                            return `Memenuhi SLA: ${raw.trueCount}\nTidak Memenuhi SLA: ${raw.falseCount}\nTotal Transaksi: ${totalTransactions}`;
+                        }
+                    }
                 }
             }
         }
