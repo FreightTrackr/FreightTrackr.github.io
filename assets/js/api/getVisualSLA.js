@@ -34,7 +34,7 @@ function constructApiUrl() {
 
 function responseFunction(result, startDate, endDate) {
     if (result.status == 200) {
-        console.log(result.data.message);
+        const processedData = processData(result.data.data);
     } else {
         console.log(result.data.message);
     }
