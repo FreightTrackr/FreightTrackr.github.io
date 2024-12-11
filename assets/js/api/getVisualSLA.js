@@ -68,3 +68,62 @@ function processData(data) {
 
     return { labels, truePercentages, falsePercentages };
 }
+
+function generateChart(data, startDate, endDate) {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'statusChart';
+    canvas.width = 900;
+    canvas.height = 500;
+    document.getElementById('chart-container3').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [
+                {
+                    label: 'SLA Met (%)',
+                    data: data.truePercentages,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'SLA Not Met (%)',
+                    data: data.falsePercentages,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Percentage'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Customer Code'
+                    }
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: `SLA Status Percentage by Customer Code (${startDate} - ${endDate})`
+                }
+            }
+        }
+    });
+}
