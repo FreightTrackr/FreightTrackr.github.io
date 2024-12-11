@@ -39,3 +39,32 @@ function responseFunction(result, startDate, endDate) {
         console.log(result.data.message);
     }
 }
+
+function processData(data) {
+    const customerData = {};
+
+    data.forEach(item => {
+        const { kode_pelanggan, status_sla } = item;
+        if (!customerData[kode_pelanggan]) {
+            customerData[kode_pelanggan] = { trueCount: 0, falseCount: 0 };
+        }
+        if (status_sla) {
+            customerData[kode_pelanggan].trueCount++;
+        } else {
+            customerData[kode_pelanggan].falseCount++;
+        }
+    });
+
+    const labels = [];
+    const truePercentages = [];
+    const falsePercentages = [];
+
+    for (const customer in customerData) {
+        const total = customerData[customer].trueCount + customerData[customer].falseCount;
+        labels.push(customer);
+        truePercentages.push((customerData[customer].trueCount / total) * 100);
+        falsePercentages.push((customerData[customer].falseCount / total) * 100);
+    }
+
+    return { labels, truePercentages, falsePercentages };
+}
