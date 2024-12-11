@@ -35,6 +35,7 @@ function constructApiUrl() {
 function responseFunction(result, startDate, endDate) {
     if (result.status == 200) {
         const processedData = processData(result.data.data);
+        generateChart(processedData, startDate, endDate);
     } else {
         console.log(result.data.message);
     }
