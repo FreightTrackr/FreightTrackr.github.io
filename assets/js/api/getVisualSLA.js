@@ -2,7 +2,7 @@ import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/cookie.
 import { APITransaksiDelivered } from "../endpoint.js"
 import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/api.js";
 
-export default function GetVisualSLA(){
+export default function GetVisualSLAPelanggan(){
     const tokenkey = "Authorization";
     let tokenvalue = getCookie(tokenkey);
     const apiUrl = constructApiUrl();
