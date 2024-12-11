@@ -5,6 +5,7 @@ import Register from './api/register.js';
 import GetUsers from './api/getUsers.js';
 import GetTransaksi from './api/getTransaksi.js';
 import GetProgressTotalBiaya from './api/getProgressTotalBiaya.js';
+import GetVisualSLA from './api/getVisualSLA.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
@@ -57,6 +58,7 @@ function EffectButton(){
     if (tableTransaksi) {
         GetTransaksi();
         GetProgressTotalBiaya();
+        GetVisualSLA();
     }
     if (tableKantor) {
         GetKantor();
