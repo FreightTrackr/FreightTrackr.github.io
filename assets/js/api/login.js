@@ -20,8 +20,8 @@ function responseFunction(result) {
             text: result.data.message,
             icon: 'success',
             confirmButtonText: 'Ok'
-        }).then((result) => {
-            if (result.isConfirmed) {
+        }).then((resultAlert) => {
+            if (resultAlert.isConfirmed) {
                 setCookieWithExpireHour("Authorization", result.data.token, 2);
                 redirect("../"); 
             }
