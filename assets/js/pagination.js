@@ -46,7 +46,7 @@ export function createPageURL(pageNumber) {
 
 export function createPaginationArrow(direction, href, isDisabled) {
     const arrowContainer = document.createElement('button');
-    arrowContainer.classList.add('flex', 'h-10', 'w-10', 'items-center', 'justify-center', 'border');
+    arrowContainer.classList.add('pagination-button');
     
     if (isDisabled) {
         arrowContainer.classList.add('pointer-events-none', 'text-gray-300');
@@ -57,10 +57,10 @@ export function createPaginationArrow(direction, href, isDisabled) {
     let icon;
     switch (direction) {
         case 'left':
-            icon = '←';  // You can replace this with actual icons
+            icon = '<';  // You can replace this with actual icons
             break;
         case 'right':
-            icon = '→';
+            icon = '>';
             break;
         case 'first':
             icon = '<<';
@@ -84,7 +84,7 @@ export function createPaginationArrow(direction, href, isDisabled) {
 
 export function createPaginationNumber(page, href, isActive) {
     const numberContainer = document.createElement('button');
-    numberContainer.classList.add('flex', 'h-10', 'w-10', 'items-center', 'justify-center', 'text-sm', 'border');
+    numberContainer.classList.add('pagination-button');
     
     if (isActive) {
         numberContainer.classList.add('z-10', 'bg-blue-600', 'border-blue-600', 'text-white');
