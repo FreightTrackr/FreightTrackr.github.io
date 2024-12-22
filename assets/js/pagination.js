@@ -1,11 +1,11 @@
-export function setupPagination(containerId, totalUsers) {
+export function setupPagination(containerId, total, limit) {
     const paginationElement = document.getElementById(containerId);
     if (!paginationElement) {
         console.log(`Element with ID "${containerId}" not found.`);
         return;
     }
 
-    const totalPages = Math.ceil(totalUsers / 10);
+    const totalPages = Math.ceil(total / limit);
     const currentPage = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
     const allPages = generatePagination(currentPage, totalPages);
 
