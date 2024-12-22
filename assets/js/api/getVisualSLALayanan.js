@@ -124,7 +124,7 @@ function generateChart(data, startDate, endDate) {
                 },
                 title: {
                     display: true,
-                    text: `SLA Status Percentage by Service (${startDate} - ${endDate})`
+                    text: `Final SWP Percentage by Service (${startDate} - ${endDate})`
                 },
                 tooltip: {
                     callbacks: {
