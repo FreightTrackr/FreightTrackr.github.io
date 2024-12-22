@@ -10,42 +10,39 @@ export default function GetProgressTotalBiaya(){
         console.error("Invalid URL parameters. Please provide start-date and end-date.");
         return;
     }
-    getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const { startDate, endDate } = getDateParams();
+    getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,(result) => responseFunction(result, startDate, endDate));
 }
 
-function constructApiUrl() {
+function getDateParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const startDate = urlParams.get('start-date') || "";
     const endDate = urlParams.get('end-date') || "";
-    const noPend = urlParams.get('no-pend') || "";
-    const kodePelanggan = urlParams.get('kode-pelanggan') || "";
+    return { startDate, endDate };
+}
 
+function constructApiUrl() {
+    const { startDate, endDate } = getDateParams();
     if (!startDate || !endDate) {
-        return `${APISemuaTransaksi}?start_date=${startDate}&end_date=${endDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
+        return `${APISemuaTransaksi}?start_date=${startDate}&end_date=${endDate}`;
     }
 
     const utcStartDate = new Date(startDate).toISOString();
     const utcEndDate = new Date(endDate).toISOString();
-    return `${APISemuaTransaksi}?start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
+    return `${APISemuaTransaksi}?start_date=${utcStartDate}&end_date=${utcEndDate}`;
 }
 
-function responseFunction(result) {
+
+function responseFunction(result, startDate, endDate) {
     if (result.status == 200) {
-        generateChart(result.data.data);
+        const processedData = processData(result.data.data);
+        generateChart(processedData, startDate, endDate);
     } else {
         console.log(result.data.message);
     }
 }
 
-function generateChart(data) {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'statusChart';
-    canvas.width = 900;
-    canvas.height = 500;
-    document.getElementById('chart-container2').appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-
-    // Transform data to accumulate total_biaya per day
+function processData(data) {
     const totalBiayaPerDay = data.reduce((acc, item) => {
         const date = item.tanggal_kirim.split('T')[0];
         if (!acc[date]) {
@@ -55,9 +52,18 @@ function generateChart(data) {
         return acc;
     }, {});
 
-    // Sort dates to ensure the chart shows data in chronological order
-    const sortedDates = Object.keys(totalBiayaPerDay).sort((a, b) => new Date(a) - new Date(b));
-    const sortedTotalBiaya = sortedDates.map(date => totalBiayaPerDay[date]);
+    sortedDates = Object.keys(totalBiayaPerDay).sort((a, b) => new Date(a) - new Date(b));
+    sortedTotalBiaya = sortedDates.map(date => totalBiayaPerDay[date]);
+    return { sortedDates, sortedTotalBiaya };
+}
+
+function generateChart(data, startDate, endDate) {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'statusChart';
+    canvas.width = 900;
+    canvas.height = 500;
+    document.getElementById('chart-container2').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
 
     new Chart(ctx, {
         type: 'line',
