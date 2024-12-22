@@ -1,5 +1,6 @@
 import { toggleSidebar } from './sidebar.js';
 import { toggleAccount } from './account.js';
+import { AutofillForm } from './autofill.js';
 import Login from './api/login.js';
 import Register from './api/register.js';
 import GetUsers from './api/getUsers.js';
@@ -63,6 +64,7 @@ function EffectButton(){
         GetVisualSLAPelanggan();
         GetVisualSLALayanan();
         GetVisualSLAAge();
+        AutofillForm();
     }
     if (tableKantor) {
         GetKantor();
