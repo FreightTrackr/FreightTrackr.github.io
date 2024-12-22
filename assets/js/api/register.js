@@ -3,6 +3,7 @@ import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/cookie.
 import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/url.js";
 import { APIRegister } from "../endpoint.js"
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/api.js";
+import sweetalert2 from 'https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/+esm'
 
 export default function Register(){
     const tokenkey = "Authorization"
@@ -21,8 +22,22 @@ export default function Register(){
 function responseFunction(result) {
     if (result.status == 200) {
         alert(result.data.message);
-        redirect("../login"); 
+        sweetalert2.fire({
+            title: 'Success!',
+            text: result.data.message,
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                redirect("../login"); 
+            }
+        });
     } else {
-        alert(result.data.message);
+        sweetalert2.fire({
+            title: 'Info!',
+            text: result.data.message,
+            icon: 'info',
+            confirmButtonText: 'Ok'
+        })
     }
 }
