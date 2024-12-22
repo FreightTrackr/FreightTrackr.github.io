@@ -10,10 +10,17 @@ export default function GetKantor(){
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
     const apiUrlWithPage = `${APIKantor}?page=${page}`;
-    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const { limit } = getLimit();
+    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,(result) => responseFunction(result, limit));
 }
 
-function responseFunction(result) {
+function getLimit() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const limit = urlParams.get('limit') || 10;
+    return { limit };
+}
+
+function responseFunction(result, limit) {
     if (result.status == 200) {
         const kantor = result.data.data;
         const totalKantor = result.data.data_count.total;
@@ -32,7 +39,7 @@ function responseFunction(result) {
             ];
             addRowToTable("table-kantor", "tr", "td", rowData);
         });
-        setupPagination("pagination", totalKantor);
+        setupPagination("pagination", totalKantor, limit);
     } else {
         console.log(result.data.message);
     }
