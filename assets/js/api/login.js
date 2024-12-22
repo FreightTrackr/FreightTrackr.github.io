@@ -23,7 +23,7 @@ function responseFunction(result) {
         }).then((resultAlert) => {
             if (resultAlert.isConfirmed) {
                 setCookieWithExpireHour("Authorization", result.data.token, 2);
-                redirect("../"); 
+                redirect("../");
             }
         });
     } else {
