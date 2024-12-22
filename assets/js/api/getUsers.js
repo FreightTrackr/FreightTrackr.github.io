@@ -10,10 +10,17 @@ export default function GetUsers(){
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
     const apiUrlWithPage = `${APIUsers}?page=${page}`;
-    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const { limit } = getLimit();
+    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,(result) => responseFunction(result, limit));
 }
 
-function responseFunction(result) {
+function getLimit() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const limit = urlParams.get('limit') || 10;
+    return { limit };
+}
+
+function responseFunction(result, limit) {
     if (result.status == 200) {
         const users = result.data.data;
         const totalUsers = result.data.data_count.total;
@@ -28,45 +35,8 @@ function responseFunction(result) {
             ];
             addRowToTable("table-users", "tr", "td", rowData);
         });
-        setupPagination("pagination", totalUsers);
-        generateChart(totalUsers);
+        setupPagination("pagination", totalUsers, limit);
     } else {
         console.log(result.data.message);
     }
-}
-
-function generateChart(users) {
-    // Extract data for the chart
-    const roleCounts = {users};
-
-    const labels = Object.keys(roleCounts);
-    const data = Object.values(roleCounts);
-
-    // Create a canvas element for the chart
-    const canvas = document.createElement('canvas');
-    canvas.id = 'usersChart';
-    document.getElementById('chart-container').appendChild(canvas);
-
-    // Generate the chart
-    const ctx = document.getElementById('usersChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar', // You can change this to 'line', 'pie', etc.
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '# of Users by Role',
-                data: data,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 }
