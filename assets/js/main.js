@@ -1,6 +1,7 @@
 import { toggleSidebar } from './sidebar.js';
 import { toggleAccount } from './account.js';
 import { AutofillForm } from './autofill.js';
+import { onClickPreventDefault } from './element.js';
 import Login from './api/login.js';
 import Register from './api/register.js';
 import GetUsers from './api/getUsers.js';
@@ -60,11 +61,11 @@ function EffectButton(){
     }
     if (tableTransaksi) {
         GetTransaksi();
-        GetProgressTotalBiaya();
-        GetVisualSLAPelanggan();
-        GetVisualSLALayanan();
-        GetVisualSLAAge();
         AutofillForm();
+        onClickPreventDefault("tampilkan-pendapatan", GetProgressTotalBiaya)
+        onClickPreventDefault("tampilkan-swp-pelanggan", GetVisualSLAPelanggan)
+        onClickPreventDefault("tampilkan-swp-layanan", GetVisualSLALayanan)
+        onClickPreventDefault("tampilkan-sla-age", GetVisualSLAAge)
     }
     if (tableKantor) {
         GetKantor();
