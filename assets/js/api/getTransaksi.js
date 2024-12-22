@@ -12,7 +12,14 @@ export default function GetTransaksi(){
         console.error("Invalid URL parameters. Please provide start-date and end-date.");
         return;
     }
-    getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const { limit } = getLimit();
+    getJSON(apiUrl,tokenkey,"Bearer "+tokenvalue,(result) => responseFunction(result, limit));
+}
+
+function getLimit() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const limit = urlParams.get('limit') || 10;
+    return { limit };
 }
 
 function constructApiUrl() {
@@ -33,7 +40,7 @@ function constructApiUrl() {
     return `${APITransaksi}?page=${page}&limit=${limit}&start_date=${utcStartDate}&end_date=${utcEndDate}&no_pend=${noPend}&kode_pelanggan=${kodePelanggan}`;
 }
 
-function responseFunction(result) {
+function responseFunction(result, limit) {
     if (result.status == 200) {
         const transaksi = result.data.data;
         const totalTransaksi = result.data.data_count.total;
@@ -57,7 +64,7 @@ function responseFunction(result) {
             ];
             addRowToTable("table-transaksi", "tr", "td", rowData);
         });
-        setupPagination("pagination", totalTransaksi);
+        setupPagination("pagination", totalTransaksi, limit);
         generateChart(result.data.data_count);
     } else {
         console.log(result.data.message);
