@@ -47,3 +47,75 @@ function processData(data) {
     const slaActuals = data.map(item => item.aktual_sla);
     return { labels, slaPromises, slaActuals };
 }
+
+function generateChart(data, startDate, endDate) {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'statusChart';
+    canvas.width = 900;
+    canvas.height = 500;
+    document.getElementById('chart-container5').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [
+                {
+                    label: 'SLA Dijanjikan',
+                    data: data.slaPromises,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                {
+                    label: 'SLA Aktual',
+                    data: data.slaActuals,
+                    borderColor: 'red',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'No Resi - Tanggal Kirim'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'SLA (Hari)'
+                    }
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: `SLA Status Percentage by Service (${startDate} - ${endDate})`
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const index = context.dataIndex;
+                            const label = context.label;
+                            const slaPromise = context.dataset.label === 'SLA Dijanjikan' ? data.slaPromises[index] : null;
+                            const slaActual = context.dataset.label === 'SLA Aktual' ? data.slaActuals[index] : null;
+                            let tooltipLabel = context.dataset.label + ': ' + context.raw;
+                            if (slaPromise !== null && slaActual !== null) {
+                                const difference = slaActual - slaPromise;
+                                tooltipLabel += `\n${label}\nSelisih SLA: ${difference} hari`;
+                            }
+                            return tooltipLabel;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
