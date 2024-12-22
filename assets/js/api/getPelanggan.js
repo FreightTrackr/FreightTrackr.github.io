@@ -10,10 +10,17 @@ export default function GetPelanggan(){
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 1;
     const apiUrlWithPage = `${APIPelanggan}?page=${page}`;
-    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
+    const { limit } = getLimit();
+    getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,(result) => responseFunction(result, limit));
 }
 
-function responseFunction(result) {
+function getLimit() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const limit = urlParams.get('limit') || 10;
+    return { limit };
+}
+
+function responseFunction(result, limit) {
     if (result.status == 200) {
         const pelanggan = result.data.data;
         const totalPelanggan = result.data.data_count.total;
@@ -26,7 +33,7 @@ function responseFunction(result) {
             ];
             addRowToTable("table-pelanggan", "tr", "td", rowData);
         });
-        setupPagination("pagination", totalPelanggan);
+        setupPagination("pagination", totalPelanggan, limit);
     } else {
         console.log(result.data.message);
     }
