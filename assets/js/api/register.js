@@ -21,7 +21,6 @@ export default function Register(){
 
 function responseFunction(result) {
     if (result.status == 200) {
-        alert(result.data.message);
         sweetalert2.fire({
             title: 'Success!',
             text: result.data.message,
