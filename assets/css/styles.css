@@ -56,6 +56,53 @@ table th {
     text-transform: uppercase;
 }
 
+#pagination {
+    display: flex; /* Make the container a flex container */
+    gap: 0.5rem; /* Optional: Add some space between buttons */
+}
+
+.pagination-button {
+    display: inline-block; /* Ensure buttons are inline-block elements */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    position: relative; /* Ensure positioned elements like the a tag inside it are positioned relative to it */
+}
+
+.pagination-button:hover {
+    background-color: #f7fafc; /* Change to your desired hover color */
+}
+
+.pagination-button a {
+    display: block; /* Make the anchor tag a block element */
+    width: 100%; /* Make it take the full width of the button */
+    height: 100%; /* Make it take the full height of the button */
+    color: inherit; /* Inherit the color of the parent button */
+    text-decoration: none; /* Remove underline from the text */
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.bg-blue-600 {
+    background-color: #2563EB;
+}
+
+.border-blue-600 {
+    border-color: #2563EB;
+}
+
+.text-white {
+    color: #FFFFFF;
+}
+
+.hover-bg-gray-100:hover {
+    background-color: #f7fafc;
+}
+
 .container {
     display: flex;
     height: 100vh;
