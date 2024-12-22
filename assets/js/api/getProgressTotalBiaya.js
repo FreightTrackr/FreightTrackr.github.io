@@ -52,9 +52,9 @@ function processData(data) {
         return acc;
     }, {});
 
-    sortedDates = Object.keys(totalBiayaPerDay).sort((a, b) => new Date(a) - new Date(b));
-    sortedTotalBiaya = sortedDates.map(date => totalBiayaPerDay[date]);
-    return { sortedDates, sortedTotalBiaya };
+    const labels = Object.keys(totalBiayaPerDay).sort((a, b) => new Date(a) - new Date(b));
+    const sortedTotalBiaya = labels.map(date => totalBiayaPerDay[date]);
+    return { labels, sortedTotalBiaya };
 }
 
 function generateChart(data, startDate, endDate) {
@@ -68,11 +68,11 @@ function generateChart(data, startDate, endDate) {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: sortedDates,
+            labels: data.labels,
             datasets: [
                 {
-                    label: 'Total Biaya per Hari',
-                    data: sortedTotalBiaya,
+                    label: `Total Pendapatan per Hari (${startDate} - ${endDate})`,
+                    data: data.sortedTotalBiaya,
                     borderColor: 'rgba(153, 102, 255, 1)',
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     fill: false
@@ -98,7 +98,7 @@ function generateChart(data, startDate, endDate) {
                         text: 'Biaya (IDR)'
                     }
                 }
-            }
+            },
         }
     });
 }
