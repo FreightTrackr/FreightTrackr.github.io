@@ -98,7 +98,7 @@ function generateChart(data, startDate, endDate) {
                 },
                 title: {
                     display: true,
-                    text: `Sla Age by Service (${startDate} - ${endDate})`
+                    text: `SLA Age by Service (${startDate} - ${endDate})`
                 },
                 tooltip: {
                     callbacks: {
