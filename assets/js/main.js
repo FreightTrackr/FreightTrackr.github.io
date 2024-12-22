@@ -7,6 +7,7 @@ import GetTransaksi from './api/getTransaksi.js';
 import GetProgressTotalBiaya from './api/getProgressTotalBiaya.js';
 import GetVisualSLAPelanggan from './api/getVisualSLAPelanggan.js';
 import GetVisualSLALayanan from './api/getVisualSLALayanan.js';
+import GetVisualSLAAge from './api/getVisualSLAAge.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
@@ -61,6 +62,7 @@ function EffectButton(){
         GetProgressTotalBiaya();
         GetVisualSLAPelanggan();
         GetVisualSLALayanan();
+        GetVisualSLAAge();
     }
     if (tableKantor) {
         GetKantor();
