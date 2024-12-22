@@ -124,7 +124,7 @@ function generateChart(data, startDate, endDate) {
                 },
                 title: {
                     display: true,
-                    text: `SLA Status Percentage by Customer Code (${startDate} - ${endDate})`
+                    text: `Final SWP Percentage by Customer Code (${startDate} - ${endDate})`
                 },
                 tooltip: {
                     callbacks: {
