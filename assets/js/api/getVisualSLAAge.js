@@ -39,3 +39,11 @@ function responseFunction(result, startDate, endDate) {
         console.log(result.data.message);
     }
 }
+
+function processData(data) {
+    data.sort((a, b) => new Date(a.tanggal_kirim) - new Date(b.tanggal_kirim));
+    const labels = data.map(item => `${item.no_resi} - ${new Date(item.tanggal_kirim).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}`);
+    const slaPromises = data.map(item => item.sla);
+    const slaActuals = data.map(item => item.aktual_sla);
+    return { labels, slaPromises, slaActuals };
+}
