@@ -2,6 +2,7 @@ import { toggleSidebar } from './sidebar.js';
 import { toggleAccount } from './account.js';
 import { AutofillForm } from './autofill.js';
 import { onClickPreventDefault } from './element.js';
+import { Logout } from './logout.js';
 import Login from './api/login.js';
 import Register from './api/register.js';
 import GetUsers from './api/getUsers.js';
@@ -25,35 +26,36 @@ function EffectButton(){
     const tableTransaksi = container('table-transaksi');
     const tableKantor = container('table-kantor');
     const tablePelanggan = container('table-pelanggan');
+    const logoutButton = container('logout-button');
 
     if (loginButton) {
-        onClick("login-button", Login)
+        onClick("login-button", Login);
     } else {
         console.log('Element with ID "login-button" not found.');
     }
     
     if (registerButton) {
-        onClick("register-button", Register)
+        onClick("register-button", Register);
     } else {
         console.log('Element with ID "register-button" not found.');
     }
 
     if (toggleButton) {
-        toggleButton.addEventListener('click', toggleSidebar);
+        onClick("toggle-button", toggleSidebar);
     } else {
         console.log('Element with ID "toggle-button" not found.');
     }
 
     if (accountButton) {
-        accountButton.addEventListener('click', toggleAccount);
+        onClick("account-button", toggleAccount);
     } else {
         console.log('Element with ID "account-button" not found.');
     }
 
-    if (accountButton) {
-        accountButton.addEventListener('click', toggleAccount);
+    if (logoutButton) {
+        onClick("logout-button", Logout);
     } else {
-        console.log('Element with ID "account-button" not found.');
+        console.log('Element with ID "logout-button" not found.');
     }
     
     if (tableUsers) {
