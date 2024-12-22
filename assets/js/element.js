@@ -14,3 +14,10 @@ export function addRowToTable(parentId, firstChildId, secondChildId, rowData) {
         console.log(`Element with ID '${parentId}' not found.`);
     }
 }
+
+export function onClickPreventDefault(id, actionFunctionName) {
+    document.getElementById(id).onclick = function(event) {
+        event.preventDefault();
+        actionFunctionName();
+    };
+}
