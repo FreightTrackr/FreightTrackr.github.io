@@ -1,78 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css">
-    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
-</head>
-<body>
-    <div class="container-auth">
-        <div class="header-auth">
-            <div class="absolute-tengah">
-                <a href="/" class="side-menu-link">
-                    <div class="side-header">
-                        <div style="height: 100%;" class="center-div-horizontally-vertically center-text">
-                            <img src="../assets/svg/icon.svg" alt="Icon" class="svg-icon">
-                            <span>FreightTrackr</span>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+        <link rel="stylesheet" href="../assets/css/tailwind.output.css" />
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="../assets/js/vendor/init-alpine.js"></script>
+    </head>
+    <body>
+        <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+            <div
+                class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+            >
+                <div class="flex flex-col overflow-y-auto md:flex-row">
+                    <div class="h-32 md:h-auto md:w-1/2">
+                        <img
+                        aria-hidden="true"
+                        class="object-cover w-full h-full dark:hidden"
+                        src="../assets/img/create-account-office.jpeg"
+                        alt="Office"
+                        />
+                        <img
+                        aria-hidden="true"
+                        class="hidden object-cover w-full h-full dark:block"
+                        src="../assets/img/create-account-office-dark.jpeg"
+                        alt="Office"
+                        />
+                    </div>
+                    <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                        <div class="w-full">
+                            <h1
+                                class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+                            >
+                                Register
+                            </h1>
+                            <form action="javascript:void(0);">
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Username</span>
+                                    <input
+                                    id="username"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="JaneDoe"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Nama</span>
+                                    <input
+                                    id="nama"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Jane Doe"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">No Telephone</span>
+                                    <input
+                                    id="no_telp"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="081234567890"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Email</span>
+                                    <input
+                                    id="email"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="janed@gmail.com"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Role</span>
+                                    <input
+                                    id="role"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="admin/kantor/pelanggan"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Nomor Pendirian</span>
+                                    <input
+                                    id="no_pend"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="123654123"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Kode Pelanggan</span>
+                                    <input
+                                    id="kode_pelanggan"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="BNKBRI"
+                                    type="text"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Password</span>
+                                    <input
+                                    id="password"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="***************"
+                                    type="password"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Confrim Password</span>
+                                    <input
+                                    id="confirm_password"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="***************"
+                                    type="password"
+                                    />
+                                </label>
+
+                                <div class="flex mt-6 text-sm">
+                                    <label class="flex items-center dark:text-gray-400">
+                                        <input
+                                            type="checkbox"
+                                            class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                        />
+                                        <span class="ml-2">
+                                            I agree to the
+                                            <span class="underline">privacy policy</span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <button
+                                id="register-button"
+                                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                Create account
+                                </button>
+                            </form>
+
+                            <hr class="my-8" />
+
+                            <p class="mt-1">
+                                <a
+                                class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="/login"
+                                >
+                                Already have an account? Login
+                                </a>
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="header-menu">
-                <a href="/login" class="header-menu-link">
-                    <div class="header-menu-icon-container">
-                        <img src="../assets/svg/login.svg" alt="Login Icon" class="svg-menu">
-                        <span>Login</span>
-                    </div>
-                </a>
-                <a href="/register" class="header-menu-link">
-                    <div class="header-menu-icon-container">
-                        <img src="../assets/svg/assignment_ind.svg" alt="Register Icon" class="svg-menu">
-                        <span>Register</span>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
-        <div class="main-auth">
-            <div class="center-div-horizontally">
-                <form action="javascript:void(0);">
-                    <label for="username">Username:</label><br>
-                    <input type="text" id="username" name="username"><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password"><br>
-                    <label for="nama">Nama:</label><br>
-                    <input type="text" id="nama" name="nama"><br>
-                    <label for="no_telp">No Telephone:</label><br>
-                    <input type="text" id="no_telp" name="no_telp"><br>
-                    <label for="email">Email:</label><br>
-                    <input type="text" id="email" name="email"><br>
-                    <label for="role">Role:</label><br>
-                    <input type="text" id="role" name="role"><br>
-                    <button id="register-button" type="submit">Register</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-auth">
-            <div class="copyright">
-                <p>Copyright © 2024 Ibrohim Mubarok. All rights reserved</p>
-            </div>
-            <div class="sosmed">
-                <a href="https://github.com/Befous" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/github.svg" alt="GitHub Icon" class="svg-sosmed">
-                </a>
-                <a href="https://instagram.com" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/instagram.svg" alt="Instagram Icon" class="svg-sosmed">
-                </a>
-                <a href="https://youtube.com" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/youtube.svg" alt="YouTube Icon" class="svg-sosmed">
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="../assets/js/main.js"></script>
-</body>
+        <script type="module" src="../assets/js/main.js"></script>
+    </body>
 </html>
