@@ -45,13 +45,14 @@ export function createPageURL(pageNumber) {
 }
 
 export function createPaginationArrow(direction, href, isDisabled) {
-    const arrowContainer = document.createElement('button');
-    arrowContainer.classList.add('pagination-button');
-    
+    const arrowContainer = document.createElement('li');
+    const button = document.createElement('button');
+    button.classList.add('px-3', 'py-1', 'rounded-md', 'focus:outline-none', 'focus:shadow-outline-purple');
+
     if (isDisabled) {
-        arrowContainer.classList.add('pointer-events-none', 'text-gray-300');
+        button.classList.add('pointer-events-none', 'text-gray-300');
     } else {
-        arrowContainer.classList.add('hover:bg-gray-100');
+        button.classList.add('hover:bg-gray-100');
     }
 
     let icon;
@@ -70,37 +71,37 @@ export function createPaginationArrow(direction, href, isDisabled) {
             break;
     }
 
-    if (isDisabled) {
-        arrowContainer.innerText = icon;
-    } else {
-        const link = document.createElement('a');
-        link.href = href;
-        link.innerText = icon;
-        arrowContainer.appendChild(link);
+    button.innerText = icon;
+
+    if (!isDisabled) {
+        button.addEventListener('click', () => {
+            window.location.href = href;
+        });
     }
-    
+
+    arrowContainer.appendChild(button);
     return arrowContainer;
 }
 
 export function createPaginationNumber(page, href, isActive) {
-    const numberContainer = document.createElement('button');
-    numberContainer.classList.add('pagination-button');
-    
+    const numberContainer = document.createElement('li');
+    const button = document.createElement('button');
+    button.classList.add('px-3', 'py-1', 'rounded-md', 'focus:outline-none', 'focus:shadow-outline-purple');
+
     if (isActive) {
-        numberContainer.classList.add('z-10', 'bg-blue-600', 'border-blue-600', 'text-white');
+        button.classList.add('text-white', 'bg-purple-600', 'border-purple-600');
     } else {
-        numberContainer.classList.add('hover:bg-gray-100');
+        button.classList.add('hover:bg-gray-100');
     }
 
-    const link = document.createElement('a');
-    link.href = href;
-    link.innerText = page;
+    button.innerText = page;
 
     if (!isActive) {
-        numberContainer.appendChild(link);
-    } else {
-        numberContainer.innerText = page;
+        button.addEventListener('click', () => {
+            window.location.href = href;
+        });
     }
 
+    numberContainer.appendChild(button);
     return numberContainer;
 }
