@@ -1,7 +1,8 @@
 import { toggleSidebar } from './sidebar.js';
 import { toggleAccount } from './account.js';
 import { AutofillForm } from './autofill.js';
-import { onClickPreventDefault } from './element.js';
+import { onClickPreventDefault, redirectForm } from './element.js';
+import { deleteUser } from './deleteUser.js';
 import { Logout } from './logout.js';
 import Login from './api/login.js';
 import Register from './api/register.js';
@@ -14,6 +15,9 @@ import GetVisualSLAAge from './api/getVisualSLAAge.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
+
+window.Logout = Logout;
+window.deleteUser = deleteUser;
 
 runAfterDOM(EffectButton);
 
@@ -64,6 +68,7 @@ function EffectButton(){
     if (tableTransaksi) {
         GetTransaksi();
         AutofillForm();
+        redirectForm();
         onClickPreventDefault("tampilkan-pendapatan", GetProgressTotalBiaya)
         onClickPreventDefault("tampilkan-swp-pelanggan", GetVisualSLAPelanggan)
         onClickPreventDefault("tampilkan-swp-layanan", GetVisualSLALayanan)
