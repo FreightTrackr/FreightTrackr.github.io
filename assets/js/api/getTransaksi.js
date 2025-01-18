@@ -44,6 +44,11 @@ function responseFunction(result, limit) {
     if (result.status == 200) {
         const transaksi = result.data.data;
         const totalTransaksi = result.data.data_count.total;
+
+        const currentPage = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+        const start = (currentPage - 1) * limit + 1;
+        const end = Math.min(currentPage * limit, totalTransaksi);
+        document.getElementById('showing-text').innerText = `Showing ${start}-${end} of ${totalTransaksi}`;
         
         transaksi.forEach(transaksi => {
             const rowData = [
@@ -62,7 +67,7 @@ function responseFunction(result, limit) {
                 transaksi.no_pend_terima,
                 transaksi.kode_pelanggan,
             ];
-            addRowToTable("table-transaksi", "tr", "td", rowData);
+            addRowToTable("table-transaksi", rowData);
         });
         setupPagination("pagination", totalTransaksi, limit);
         generateChart(result.data.data_count);
