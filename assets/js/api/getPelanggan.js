@@ -24,6 +24,11 @@ function responseFunction(result, limit) {
     if (result.status == 200) {
         const pelanggan = result.data.data;
         const totalPelanggan = result.data.data_count.total;
+
+        const currentPage = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+        const start = (currentPage - 1) * limit + 1;
+        const end = Math.min(currentPage * limit, totalPelanggan);
+        document.getElementById('showing-text').innerText = `Showing ${start}-${end} of ${totalPelanggan}`;
         
         pelanggan.forEach(pelanggan => {
             const rowData = [
@@ -31,7 +36,7 @@ function responseFunction(result, limit) {
                 pelanggan.tipe_pelanggan,
                 pelanggan.nama_pelanggan
             ];
-            addRowToTable("table-pelanggan", "tr", "td", rowData);
+            addRowToTable("table-pelanggan", rowData);
         });
         setupPagination("pagination", totalPelanggan, limit);
     } else {
