@@ -24,6 +24,11 @@ function responseFunction(result, limit) {
     if (result.status == 200) {
         const kantor = result.data.data;
         const totalKantor = result.data.data_count.total;
+
+        const currentPage = parseInt(new URLSearchParams(window.location.search).get('page')) || 1;
+        const start = (currentPage - 1) * limit + 1;
+        const end = Math.min(currentPage * limit, totalKantor);
+        document.getElementById('showing-text').innerText = `Showing ${start}-${end} of ${totalKantor}`;
         
         kantor.forEach(kantor => {
             const rowData = [
@@ -37,7 +42,7 @@ function responseFunction(result, limit) {
                 kantor.kode_pos_kantor,
                 kantor.alamat_kantor
             ];
-            addRowToTable("table-kantor", "tr", "td", rowData);
+            addRowToTable("table-kantor", rowData);
         });
         setupPagination("pagination", totalKantor, limit);
     } else {
