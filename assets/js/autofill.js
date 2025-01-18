@@ -2,7 +2,7 @@ export function AutofillForm() {
     const queryParams = GetQueryParams();
     
     for (const key in queryParams) {
-        const input = document.querySelector(`[name="${key}"]`);
+        const input = document.querySelector(`[id="${key}"]`);
         if (input) {
             input.value = queryParams[key];
         }
