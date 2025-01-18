@@ -30,3 +30,17 @@ export function onClickPreventDefault(id, actionFunctionName) {
         actionFunctionName();
     };
 }
+
+export function redirectForm() {
+    document.getElementById('cari-transaksi').addEventListener('click', function(e) {
+        e.preventDefault();  // Menghindari form submit default
+        const startDate = document.getElementById('start-date').value;
+        const endDate = document.getElementById('end-date').value;
+        const noPend = document.getElementById('no-pend').value;
+        const kodePelanggan = document.getElementById('kode-pelanggan').value;
+        const limit = document.getElementById('limit').value;
+    
+        const url = `?start-date=${startDate}&end-date=${endDate}&no-pend=${noPend}&kode-pelanggan=${kodePelanggan}&limit=${limit}`;
+        window.location.href = url;
+    });
+}
