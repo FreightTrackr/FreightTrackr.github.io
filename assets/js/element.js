@@ -1,17 +1,26 @@
-export function addRowToTable(parentId, firstChildId, secondChildId, rowData) {
+export function addRowToTable(parentId, rowData) {
     const tableElement = document.getElementById(parentId);
     if (tableElement) {
-        const row = document.createElement(firstChildId);
+        const tbodyElement = tableElement.querySelector('tbody');
+        if (!tbodyElement) {
+            console.error(`No <tbody> found inside the table with ID '${parentId}'.`);
+            return null;
+        }
+        const row = document.createElement("tr");
+        row.className = "text-gray-700 dark:text-gray-400";
 
         rowData.forEach(data => {
-            const cell = document.createElement(secondChildId);
+            const cell = document.createElement("td");
+            cell.className = "px-4 py-3 text-sm";
             cell.textContent = data;
             row.appendChild(cell);
         });
 
-        tableElement.appendChild(row);
+        tbodyElement.appendChild(row);
+        return row;
     } else {
-        console.log(`Element with ID '${parentId}' not found.`);
+        console.error(`Element with ID '${parentId}' not found.`);
+        return null;
     }
 }
 
