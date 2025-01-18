@@ -1,87 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css">
-    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
-</head>
-<body>
-    <div class="container-auth">
-        <div class="header-auth">
-            <div class="absolute-tengah">
-                <a href="/" class="side-menu-link">
-                    <div class="side-header">
-                        <div style="height: 100%;" class="center-div-horizontally-vertically center-text">
-                            <img src="../assets/svg/icon.svg" alt="Icon" class="svg-icon">
-                            <span>FreightTrackr</span>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+        <link rel="stylesheet" href="../assets/css/tailwind.output.css" />
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="../assets/js/vendor/init-alpine.js"></script>
+    </head>
+    <body>
+        <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+            <div
+                class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+            >
+                <div class="flex flex-col overflow-y-auto md:flex-row">
+                    <div class="h-32 md:h-auto md:w-1/2">
+                        <img
+                        aria-hidden="true"
+                        class="object-cover w-full h-full dark:hidden"
+                        src="../assets/img/login-office.jpeg"
+                        alt="Office"
+                        />
+                        <img
+                        aria-hidden="true"
+                        class="hidden object-cover w-full h-full dark:block"
+                        src="../assets/img/login-office-dark.jpeg"
+                        alt="Office"
+                        />
+                    </div>
+                    <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                        <div class="w-full">
+                            <h1
+                                class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+                            >
+                                Login
+                            </h1>
+                            <form action="javascript:void(0);">
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Username</span>
+                                    <input
+                                    id="username"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="JaneDoe"
+                                    />
+                                </label>
+                                <label class="block mt-4 text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Password</span>
+                                    <input
+                                    id="password"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="***************"
+                                    type="password"
+                                    />
+                                </label>
+
+                                <button
+                                id="login-button"
+                                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                    Login
+                                </button>
+                            </form>
+
+                            <hr class="my-8" />
+
+                            <p class="mt-1">
+                                <a
+                                class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="/register"
+                                >
+                                Create account
+                                </a>
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="header-menu">
-                <a href="/login" class="header-menu-link">
-                    <div class="header-menu-icon-container">
-                        <img src="../assets/svg/login.svg" alt="Login Icon" class="svg-menu">
-                        <span>Login</span>
-                    </div>
-                </a>
-                <a href="/register" class="header-menu-link">
-                    <div class="header-menu-icon-container">
-                        <img src="../assets/svg/assignment_ind.svg" alt="Register Icon" class="svg-menu">
-                        <span>Register</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="main-auth">
-            <div class="center-div-horizontally">
-                <div class="screen-auth">
-                    <div class="screen__content">
-                        <form action="javascript:void(0);" class="login">
-                            <div class="login__field">
-                                <i class="login__icon fas fa-user"></i>
-                                <input id="username" type="text" class="login__input" placeholder="Username">
-                            </div>
-                            <div class="login__field">
-                                <i class="login__icon fas fa-lock"></i>
-                                <input id="password" type="password" class="login__input" placeholder="Password">
-                            </div>
-                            <button id="login-button" class="button login__submit">
-                                <span class="button__text">Login</span>
-                                <i class="button__icon fas fa-chevron-right"></i>
-                            </button>				
-                        </form>
-                    </div>
-                    <div class="screen__background">
-                        <span class="screen__background__shape screen__background__shape4"></span>
-                        <span class="screen__background__shape screen__background__shape3"></span>		
-                        <span class="screen__background__shape screen__background__shape2"></span>
-                        <span class="screen__background__shape screen__background__shape1"></span>
-                    </div>		
                 </div>
             </div>
         </div>
-        <div class="footer-auth">
-            <div class="copyright">
-                <p>Copyright © 2024 Ibrohim Mubarok. All rights reserved</p>
-            </div>
-            <div class="sosmed">
-                <a href="https://github.com/Befous" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/github.svg" alt="GitHub Icon" class="svg-sosmed">
-                </a>
-                <a href="https://instagram.com" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/instagram.svg" alt="Instagram Icon" class="svg-sosmed">
-                </a>
-                <a href="https://youtube.com" target="_blank">
-                    <img id="toggle-button" src="../assets/svg/youtube.svg" alt="YouTube Icon" class="svg-sosmed">
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="../assets/js/main.js"></script>
-</body>
+        <script type="module" src="../assets/js/main.js"></script>
+    </body>
 </html>
