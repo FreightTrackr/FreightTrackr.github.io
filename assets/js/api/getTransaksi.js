@@ -70,60 +70,25 @@ function responseFunction(result, limit) {
             addRowToTable("table-transaksi", rowData);
         });
         setupPagination("pagination", totalTransaksi, limit);
-        generateChart(result.data.data_count);
+        generateCard(result.data.data_count);
     } else {
         console.log(result.data.message);
     }
 }
 
-function generateChart(data_count) {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'statusChart';
-    canvas.width = 500;
-    canvas.height = 500;
-    document.getElementById('chart-container').appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-
-    const chartData = {
-        labels: ['Delivered', 'Canceled', 'Returned', 'In Warehouse', 'In Vehicle', 'Failed', 'Paid'],
-        datasets: [{
-            label: 'Transaction Status Counts',
-            data: [
-                data_count.delivered,
-                data_count.canceled,
-                data_count.returned,
-                data_count.inWarehouse,
-                data_count.inVehicle,
-                data_count.failed,
-                data_count.paid
-            ],
-            backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    new Chart(ctx, {
-        type: 'pie',
-        data: chartData,
-        options: {
-            responsive: true,
-        }
-    });
+function generateCard(data_count) {
+    const delivereCount = document.getElementById('delivered');
+    delivereCount.textContent = data_count.delivered;
+    const canceledCount = document.getElementById('canceled');
+    canceledCount.textContent = data_count.canceled;
+    const returnedCount = document.getElementById('returned');
+    returnedCount.textContent = data_count.returned;
+    const inWarehouseCount = document.getElementById('in-warehouse');
+    inWarehouseCount.textContent = data_count.inWarehouse;
+    const inVehicleCount = document.getElementById('in-vehicle');
+    inVehicleCount.textContent = data_count.inVehicle;
+    const failedCount = document.getElementById('failed');
+    failedCount.textContent = data_count.failed;
+    const paidCount = document.getElementById('paid');
+    paidCount.textContent = data_count.paid;
 }
