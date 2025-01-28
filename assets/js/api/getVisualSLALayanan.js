@@ -73,11 +73,15 @@ function processData(data) {
 }
 
 function generateChart(data, startDate, endDate) {
+    const chartContainer = document.createElement("div");
+    chartContainer.className = "min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800";
+    document.getElementById("chartjs").appendChild(chartContainer);
+
     const canvas = document.createElement('canvas');
     canvas.id = 'statusChart';
     canvas.width = 900;
     canvas.height = 500;
-    document.getElementById('chart-container4').appendChild(canvas);
+    chartContainer.appendChild(canvas);
     const ctx = canvas.getContext('2d');
 
     new Chart(ctx, {
@@ -88,16 +92,12 @@ function generateChart(data, startDate, endDate) {
                 {
                     label: 'SLA Met (%)',
                     data: data.truePercentages,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    backgroundColor: '#4CAF50',
                 },
                 {
                     label: 'SLA Not Met (%)',
                     data: data.falsePercentages,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
+                    backgroundColor: '#F87171',
                 }
             ]
         },

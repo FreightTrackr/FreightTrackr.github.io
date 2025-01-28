@@ -58,47 +58,58 @@ function processData(data) {
 }
 
 function generateChart(data, startDate, endDate) {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'statusChart';
-    canvas.width = 900;
-    canvas.height = 500;
-    document.getElementById('chart-container2').appendChild(canvas);
-    const ctx = canvas.getContext('2d');
+    const chartContainer = document.createElement("div");
+    chartContainer.className = "min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800";
+    document.getElementById("chartjs").appendChild(chartContainer);
+
+    const canvas = document.createElement("canvas");
+    canvas.id = "statusChart";
+    canvas.width = 572;
+    canvas.height = 286;
+    chartContainer.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
 
     new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
             labels: data.labels,
             datasets: [
-                {
-                    label: `Total Pendapatan per Hari (${startDate} - ${endDate})`,
-                    data: data.sortedTotalBiaya,
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    fill: false
-                }
-            ]
+            {
+                label: `Total Pendapatan per Hari (${startDate} - ${endDate})`,
+                data: data.sortedTotalBiaya,
+                borderColor: "#9966FF",
+                backgroundColor: "rgba(153, 102, 255, 0.2)",
+                fill: false,
+            },
+            ],
         },
         options: {
             responsive: true,
             scales: {
                 x: {
-                    type: 'time',
+                    type: "time",
                     time: {
-                        unit: 'day'
+                        unit: "day",
                     },
                     title: {
                         display: true,
-                        text: 'Tanggal Kirim'
-                    }
+                        text: "Tanggal Kirim",
+                    },
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Biaya (IDR)'
-                    }
-                }
+                        text: "Biaya (IDR)",
+                    },
+                },
             },
-        }
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "top",
+                },
+            },
+        },
     });
 }

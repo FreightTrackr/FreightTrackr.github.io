@@ -50,11 +50,15 @@ function processData(data) {
 }
 
 function generateChart(data, startDate, endDate) {
+    const chartContainer = document.createElement("div");
+    chartContainer.className = "min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800";
+    document.getElementById("chartjs").appendChild(chartContainer);
+
     const canvas = document.createElement('canvas');
     canvas.id = 'statusChart';
     canvas.width = 900;
     canvas.height = 500;
-    document.getElementById('chart-container5').appendChild(canvas);
+    chartContainer.appendChild(canvas);
     const ctx = canvas.getContext('2d');
 
     new Chart(ctx, {
