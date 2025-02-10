@@ -8,6 +8,7 @@ import Login from './api/login.js';
 import Register from './api/register.js';
 import GetUsers from './api/getUsers.js';
 import GetTransaksi from './api/getTransaksi.js';
+import ExportCSV from './api/exportcsv.js';
 import GetProgressTotalBiaya from './api/getProgressTotalBiaya.js';
 import GetVisualSLAPelanggan from './api/getVisualSLAPelanggan.js';
 import GetVisualSLALayanan from './api/getVisualSLALayanan.js';
@@ -69,6 +70,7 @@ function EffectButton(){
         GetTransaksi();
         AutofillForm();
         redirectForm();
+        onClickPreventDefault("export-csv", ExportCSV)
         onClickPreventDefault("tampilkan-pendapatan", GetProgressTotalBiaya)
         onClickPreventDefault("tampilkan-swp-pelanggan", GetVisualSLAPelanggan)
         onClickPreventDefault("tampilkan-swp-layanan", GetVisualSLALayanan)
