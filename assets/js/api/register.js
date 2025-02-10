@@ -12,13 +12,31 @@ export default function Register(){
     button.classList.remove("active:bg-purple-600", "hover:bg-purple-700", "focus:shadow-outline-purple");
     const tokenkey = "Authorization"
     let tokenvalue = getCookie(tokenkey)
+    const password = getValue("password");
+    const confirmPassword = getValue("confirm_password");
+
+    if (password !== confirmPassword) {
+        console.error("Password dan Confirm Password tidak cocok.");
+        sweetalert2.fire({
+            title: 'Password Tidak Cocok!',
+            text: "Pastikan password ada sama dengan confirm password",
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        }).then((resultAlert) => {
+            if (resultAlert.isConfirmed) {
+                button.disabled = false;
+                button.classList.remove("opacity-50", "cursor-not-allowed");
+                button.classList.add("active:bg-purple-600", "hover:bg-purple-700", "focus:shadow-outline-purple");
+            }
+        });
+        return;
+    }
     let datajson = {
         "username": getValue("username"),
         "password": getValue("password"),
         "nama": getValue("nama"),
         "no_telp": getValue("no_telp"),
         "email": getValue("email"),
-        "role": getValue("role")
     }
     postJSON(APIRegister,tokenkey,"Bearer "+tokenvalue,datajson,responseFunction);
 }
@@ -32,7 +50,7 @@ function responseFunction(result) {
             confirmButtonText: 'Ok'
         }).then((resultAlert) => {
             if (resultAlert.isConfirmed) {
-                redirect("../login"); 
+                redirect("/login"); 
             }
         });
     } else {
