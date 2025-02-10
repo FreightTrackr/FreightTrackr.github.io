@@ -50,7 +50,7 @@ function responseFunction(result, limit) {
             if (user.role) params.append("role", user.role);
             if (user.no_pend) params.append("no_pend", user.no_pend);
             if (user.kode_pelanggan) params.append("kode_pelanggan", user.kode_pelanggan);
-            const editUrl = `/edit-user?${params.toString()}`;
+            const editUrl = `/edit-user/?${params.toString()}`;
             
             const actionHTML = `
                 <td class="px-4 py-3">
