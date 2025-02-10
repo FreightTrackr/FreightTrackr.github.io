@@ -7,6 +7,13 @@ export function AutofillForm() {
             input.value = queryParams[key];
         }
     }
+
+    if (queryParams.role) {
+        const selectedRadio = document.querySelector(`input[name="role"][value="${queryParams.role}"]`);
+        if (selectedRadio) {
+            selectedRadio.checked = true;
+        }
+    }
 }
 
 function GetQueryParams() {
