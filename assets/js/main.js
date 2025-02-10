@@ -13,6 +13,7 @@ import GetProgressTotalBiaya from './api/getProgressTotalBiaya.js';
 import GetVisualSLAPelanggan from './api/getVisualSLAPelanggan.js';
 import GetVisualSLALayanan from './api/getVisualSLALayanan.js';
 import GetVisualSLAAge from './api/getVisualSLAAge.js';
+import GetVisualCODSetor from './api/getVisualCODSetor.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
@@ -31,6 +32,7 @@ function EffectButton(){
     const tableTransaksi = container('table-transaksi');
     const tableKantor = container('table-kantor');
     const tablePelanggan = container('table-pelanggan');
+    const formUser = container('form-user');
     const logoutButton = container('logout-button');
 
     if (loginButton) {
@@ -75,11 +77,15 @@ function EffectButton(){
         onClickPreventDefault("tampilkan-swp-pelanggan", GetVisualSLAPelanggan)
         onClickPreventDefault("tampilkan-swp-layanan", GetVisualSLALayanan)
         onClickPreventDefault("tampilkan-sla-age", GetVisualSLAAge)
+        onClickPreventDefault("tampilkan-cod-setor", GetVisualCODSetor)
     }
     if (tableKantor) {
         GetKantor();
     }
     if (tablePelanggan) {
         GetPelanggan();
+    }
+    if (formUser) {
+        AutofillForm();
     }
 }
