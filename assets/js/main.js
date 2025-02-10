@@ -6,6 +6,7 @@ import { deleteUser } from './deleteUser.js';
 import { Logout } from './logout.js';
 import Login from './api/login.js';
 import Register from './api/register.js';
+import EditUser from './api/putUser.js';
 import GetUsers from './api/getUsers.js';
 import GetTransaksi from './api/getTransaksi.js';
 import ExportCSV from './api/exportcsv.js';
@@ -26,6 +27,7 @@ runAfterDOM(EffectButton);
 function EffectButton(){
     const loginButton = container('login-button');
     const registerButton = container('register-button');
+    const editUserButton = container('edit-user-button');
     const toggleButton = container('toggle-button');
     const accountButton = container('account-button');
     const tableUsers = container('table-users');
@@ -45,6 +47,12 @@ function EffectButton(){
         onClick("register-button", Register);
     } else {
         console.log('Element with ID "register-button" not found.');
+    }
+
+    if (editUserButton) {
+        onClick("edit-user-button", EditUser);
+    } else {
+        console.log('Element with ID "edit-user-button" not found.');
     }
 
     if (toggleButton) {
