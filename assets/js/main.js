@@ -1,7 +1,7 @@
 import { toggleSidebar } from './sidebar.js';
 import { toggleAccount } from './account.js';
 import { AutofillForm } from './autofill.js';
-import { onClickPreventDefault, redirectForm } from './element.js';
+import { onClickPreventDefault, redirectForm, redirectFormLacak } from './element.js';
 import { deleteUser } from './deleteUser.js';
 import { Logout } from './logout.js';
 import Login from './api/login.js';
@@ -16,6 +16,7 @@ import GetVisualSLALayanan from './api/getVisualSLALayanan.js';
 import GetVisualSLAAge from './api/getVisualSLAAge.js';
 import GetVisualCODSetor from './api/getVisualCODSetor.js';
 import GetTransaksiDetail from './api/getSatuTransaksi.js';
+import GetLacak from './api/getLacak.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
@@ -38,6 +39,7 @@ function EffectButton(){
     const formUser = container('form-user');
     const logoutButton = container('logout-button');
     const tableDetail = container('transaksi-detail');
+    const lacakButton = container('lacak-button');
 
     if (loginButton) {
         onClick("login-button", Login);
@@ -71,6 +73,14 @@ function EffectButton(){
 
     if (logoutButton) {
         onClick("logout-button", Logout);
+    } else {
+        console.log('Element with ID "logout-button" not found.');
+    }
+
+    if (lacakButton) {
+        AutofillForm();
+        redirectFormLacak();
+        GetLacak();
     } else {
         console.log('Element with ID "logout-button" not found.');
     }
