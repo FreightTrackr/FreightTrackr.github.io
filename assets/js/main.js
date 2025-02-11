@@ -15,6 +15,7 @@ import GetVisualSLAPelanggan from './api/getVisualSLAPelanggan.js';
 import GetVisualSLALayanan from './api/getVisualSLALayanan.js';
 import GetVisualSLAAge from './api/getVisualSLAAge.js';
 import GetVisualCODSetor from './api/getVisualCODSetor.js';
+import GetTransaksiDetail from './api/getSatuTransaksi.js';
 import GetKantor from './api/getKantor.js';
 import GetPelanggan from './api/getPelanggan.js';
 import { container, runAfterDOM, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
@@ -36,6 +37,7 @@ function EffectButton(){
     const tablePelanggan = container('table-pelanggan');
     const formUser = container('form-user');
     const logoutButton = container('logout-button');
+    const divDetail = container('transaksi-detail');
 
     if (loginButton) {
         onClick("login-button", Login);
@@ -86,6 +88,9 @@ function EffectButton(){
         onClickPreventDefault("tampilkan-swp-layanan", GetVisualSLALayanan)
         onClickPreventDefault("tampilkan-sla-age", GetVisualSLAAge)
         onClickPreventDefault("tampilkan-cod-setor", GetVisualCODSetor)
+    }
+    if (divDetail) {
+        GetTransaksiDetail();
     }
     if (tableKantor) {
         GetKantor();
