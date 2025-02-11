@@ -37,7 +37,7 @@ function EffectButton(){
     const tablePelanggan = container('table-pelanggan');
     const formUser = container('form-user');
     const logoutButton = container('logout-button');
-    const divDetail = container('transaksi-detail');
+    const tableDetail = container('transaksi-detail');
 
     if (loginButton) {
         onClick("login-button", Login);
@@ -89,7 +89,7 @@ function EffectButton(){
         onClickPreventDefault("tampilkan-sla-age", GetVisualSLAAge)
         onClickPreventDefault("tampilkan-cod-setor", GetVisualCODSetor)
     }
-    if (divDetail) {
+    if (tableDetail) {
         GetTransaksiDetail();
     }
     if (tableKantor) {
