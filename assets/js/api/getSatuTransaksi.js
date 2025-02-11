@@ -10,7 +10,7 @@ export default function GetTransaksiDetail(){
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 
-function responseFunction(result, limit) {
+function responseFunction(result) {
     if (result.status == 200) {
         const transaksi = result.data.data;
         generateTransactionTable(transaksi);
