@@ -44,3 +44,13 @@ export function redirectForm() {
         window.location.href = url;
     });
 }
+
+export function redirectFormLacak() {
+    document.getElementById('lacak-button').addEventListener('click', function(e) {
+        e.preventDefault();  // Menghindari form submit default
+        const id_history = document.getElementById('id_history').value;
+    
+        const url = `?id_history=${id_history}`;
+        window.location.href = url;
+    });
+}
