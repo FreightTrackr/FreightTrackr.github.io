@@ -5,8 +5,8 @@ export default function GetLacak(){
     const tokenkey = "Authorization";
     let tokenvalue = getCookie(tokenkey);
     const urlParams = new URLSearchParams(window.location.search);
-    const id_history = urlParams.get('id_history') || "";
-    const apiUrlWithPage = `${APILacak}?id_history=${id_history}`;
+    const no_resi = urlParams.get('no_resi') || "";
+    const apiUrlWithPage = `${APILacak}?no_resi=${no_resi}`;
     getJSON(apiUrlWithPage,tokenkey,"Bearer "+tokenvalue,responseFunction);
 }
 

@@ -48,9 +48,9 @@ export function redirectForm() {
 export function redirectFormLacak() {
     document.getElementById('lacak-button').addEventListener('click', function(e) {
         e.preventDefault();  // Menghindari form submit default
-        const id_history = document.getElementById('id_history').value;
+        const no_resi = document.getElementById('no_resi').value;
     
-        const url = `?id_history=${id_history}`;
+        const url = `?no_resi=${no_resi}`;
         window.location.href = url;
     });
 }
